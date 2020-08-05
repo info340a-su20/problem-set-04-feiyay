@@ -2,16 +2,18 @@
 
 /* Define a function `addFour()` that takes a single argument 
    and returns a value 4 greater than the input.*/
-
+function addFour(input){
+  return input+4;
+}
    
 /* Create and log a variable `twelve` that is the result of passing 8 to your
    addFour() function. */
-
-   
+ let twelve = addFour(8);
+  console.log(twelve);
 /* Create and log a variable `twelveString` that is the result of passing "8" 
    (a string) to your addFour() function. Consider what this tells you about how
   the function should be explained (e.g., in a comment). */
-
+let twelveString=addFour("8");
   
 
 /* Define a function `compoundInterest()` that takes three parameters: 
@@ -26,7 +28,9 @@
      http://www.mathwarehouse.com/calculators/continuous-compound-interest-calculator.php
 */
 
-
+function compoundInterest(balance, rate, year){
+ return balance * Math.exp(rate*year);
+}
 
 /* Define a function `fizzBuzz()` that takes in a single number as an argument.
    The function should *return* an _array_ of numbers from 1 to the argument. 
@@ -35,7 +39,25 @@
    number. For numbers which are multiples of both three and five, the array 
    should contain "FizzBuzz" instead of the number.
    The returned array should be empty for arguments less than 1. */
+function fizzBuzz(num){
+let array = new Array(num);
+for(let i=0; i<array.length; i++){
+  if((i+1)%3==0 && (i+1)%5==0)
+  array[i] = "FizzBuzz";
+  else if ((i+1)%3==0)
+  array[i] = "Fizz";
+  else if ((i+1)%5==0)
+  array[i] = "Buzz";
+  else
+  array[i] = i+1;
+}
 
+if(array.length<1){
+  return [];
+}
+else
+return array;
+}
    
 
 /* Define a function `getLetterFrequencies()` that takes in a single string as 
@@ -47,6 +69,19 @@
    each letter, increase the value associated with that key by one. Watch out 
    for if the letter is not in the Object yet!
    You can test this method with a word like "Mississippi". */
+function getLetterFrequencies(string){
+let frequency={};
+for(var i=0; i<string.length;i++){
+  var character = string.charAt(i);
+  if (frequency[character]) 
+  frequency[character] = frequency[character]+1;
+   else 
+   frequency[character] = 1;
+}
+
+return frequency;
+}
+  
 
    
 
@@ -62,16 +97,35 @@
     
     You can log out the `deck` to check your work! */
 
-    
+    let suit = ["hearts", "diamonds", "clubs","spades"];
+    let rank = ["2","3","4","5","6","7","8","9","10","11","12","13","14"];
+    let deck=[];
+    for(var i=0; i<suit.length;i++){
+      for(var a=0; a<rank.length;a++){
+        let card={suit: suit[i], rank:rank[a]};
+        deck.push(card);
+      }
+    }
+console.log(deck);
+
+
 
 //You can test the below functions by creating e.g., a `pokerHand` array that 
 //contains five cards from the `deck`.
+
+
 
 /* Define a function `containsQueenOfHearts()` that takes in an array of "card"
    objects (e.g., a Poker hand) and returns whether or not the Queen of Hearts
    is in that array.
    Hint: use a loop to check each card. */
-
+function containsQueenOfHearts(array){
+  for(var i=0; i<array.length;i++){
+    if(array[i].rank=="12" && array[i].suit=="hearts")
+    return true;
+}
+return false;
+}
    
 
 /* Define a function `getHighCard()` that takes in an array of "card" objects
@@ -79,11 +133,25 @@
   with the highest rank. Cards of different suits but the same rank are 
   considered to have the same value, and either is a valid result */
 
-  
+  function getHighCard(array){
+let high=array[0];
+for(var i=0; i<array.length;i++){
+if(array[i].rank>high.rank)
+high =array[i];
+}
+return high;
+  }
 
 /* Define a function `isFlush()` that takes in an array of "card" objects and
    returns whether or not the cards all have the same _suit_. */
-
+function isFlush(array){
+  let same=array[0];
+  for(var i=1; i<array.length;i++){
+    if(array[i].suit != same.suit)
+return false;
+  }
+return true;
+}
    
 
 /* Extra challenge: define a function `hasPair()` that takes in an array of 
